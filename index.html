@@ -61,40 +61,28 @@
             </div>
         </div>
 
-        <nav class="flex items-center justify-center space-x-8 py-4 text-sm font-medium text-gray-700 border-b">
-            <a href="#" class="flex items-center text-black font-bold">
-                <i class="fas fa-bars mr-2"></i> Todas as Categorias
-            </a>
-            <a href="#" class="hover:text-blue-600">Departamento</a>
-            <a href="#" class="hover:text-blue-600">Departamento</a>
-            <a href="#" class="hover:text-blue-600">Departamento</a>
-            <a href="#" class="hover:text-blue-600">Departamento</a>
-            <a href="#" class="hover:text-blue-600">Departamento</a>
-            <a href="#" class="hover:text-blue-600">Departamento</a>
-            <a href="#" class="hover:text-blue-600">Departamento</a>
-        </nav>
-    </header>
-    <!-- Barra de Navegação Principal -->
-<nav class="relative w-full bg-white border-b border-gray-200">
-    <div class="max-w-[1370px] mx-auto px-4">
-        <ul class="flex items-center justify-center space-x-8 py-4 text-sm font-medium text-gray-600">
+<!-- Envolucro para manter a largura alinhada com o resto do site -->
+<div class="w-full bg-white border-b border-gray-200 relative z-50">
+    <div class="container mx-auto px-4 max-w-[1370px]">
+        
+        <nav class="flex items-center justify-center space-x-6 md:space-x-8 py-3 text-sm font-medium text-gray-600">
             
-            <!-- Item com Mega Menu (Todas as Categorias) -->
-            <!-- Nota: A classe 'group' permite que o menu apareça ao fazer hover no <li> -->
-            <li class="group">
-                <a href="#" class="flex items-center text-blue-600 font-bold">
-                    <i class="fa-solid fa-bars mr-2"></i> Todas as Categorias
+            <!-- Todas as Categorias (Com Mega Menu) -->
+            <!-- A classe 'group' aqui é o gatilho. Quando o rato passar por esta div, o menu dentro dela aparece -->
+            <div class="group py-2">
+                <a href="#" class="flex items-center text-black font-bold hover:text-blue-600 transition-colors">
+                    <i class="fas fa-bars mr-2"></i> Todas as Categorias
                 </a>
-
-                <!-- Corpo do Mega Menu (Escondido por defeito, visível em hover) -->
-                <div class="absolute left-0 top-full w-full bg-white shadow-2xl border-t border-gray-100 hidden group-hover:block z-50">
+                
+                <!-- Corpo do Mega Menu (Escondido por padrão, visível no hover da class 'group') -->
+                <div class="absolute left-0 top-full w-full bg-white shadow-2xl border-t border-gray-100 hidden group-hover:block">
                     <div class="max-w-[1370px] mx-auto flex p-6">
                         
                         <!-- Coluna 1: Lista de Departamentos (Fundo Cinza Claro) -->
                         <div class="w-64 bg-gray-50 rounded-l-md p-4 flex-shrink-0">
-                            <ul class="space-y-3">
+                            <ul class="space-y-4">
                                 <li>
-                                    <a href="#" class="flex items-center justify-between text-blue-600 font-medium">
+                                    <a href="#" class="flex items-center justify-between text-blue-600 font-bold">
                                         Departamento <i class="fa-solid fa-chevron-right text-xs"></i>
                                     </a>
                                 </li>
@@ -108,7 +96,26 @@
                                         Departamento <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
                                     </a>
                                 </li>
-                                <!-- Repetir conforme necessário -->
+                                <li>
+                                    <a href="#" class="flex items-center justify-between text-gray-600 hover:text-blue-600">
+                                        Departamento <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center justify-between text-gray-600 hover:text-blue-600">
+                                        Departamento <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center justify-between text-gray-600 hover:text-blue-600">
+                                        Departamento <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="flex items-center justify-between text-gray-600 hover:text-blue-600">
+                                        Departamento <i class="fa-solid fa-chevron-right text-xs text-gray-400"></i>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
 
@@ -118,6 +125,9 @@
                             <div>
                                 <h4 class="text-blue-600 font-bold mb-4">Categoria</h4>
                                 <ul class="space-y-3 text-gray-500 text-sm">
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
@@ -132,6 +142,9 @@
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                 </ul>
                             </div>
                             <!-- Bloco Categoria 3 -->
@@ -142,19 +155,22 @@
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                     <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
+                                    <li><a href="#" class="hover:text-blue-600">Categoria</a></li>
                                 </ul>
                             </div>
                         </div>
 
                         <!-- Coluna 3: Banner Promocional -->
                         <div class="w-72 flex-shrink-0">
-                            <!-- Substitui a imagem abaixo pela imagem correta da caneca -->
-                            <div class="relative w-full h-full min-h-[300px] rounded-lg overflow-hidden group/banner cursor-pointer">
-                                <img src="assets/caneca-promo.jpg" alt="Produtos que acabaram de chegar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/banner:scale-105">
+                            <!-- Lembre-se de ajustar o 'src' para o caminho da sua imagem da caneca -->
+                            <div class="relative w-full h-full min-h-[350px] rounded-lg overflow-hidden group/banner cursor-pointer">
+                                <img src="assets\canecaReta.png" alt="Produtos que acabaram de chegar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/banner:scale-105">
                                 
                                 <!-- Overlay Escuro e Texto -->
                                 <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center p-6">
-                                    <h3 class="text-white text-2xl font-bold mb-4 leading-tight drop-shadow-md">Confira os<br>Produtos<br>Que acabaram<br>De chegar</h3>
+                                    <h3 class="text-white text-2xl font-bold mb-6 leading-tight drop-shadow-md">Confira os<br>Produtos<br>Que acabaram<br>De chegar</h3>
                                     <span class="px-6 py-2 border border-white text-white text-xs font-bold rounded hover:bg-white hover:text-black transition-colors">
                                         VER TODOS
                                     </span>
@@ -164,17 +180,25 @@
 
                     </div>
                 </div>
-            </li>
+                <!-- Fim do Mega Menu -->
+                
+            </div>
 
-            <!-- Restantes Itens do Menu -->
-            <li><a href="#" class="hover:text-blue-600">Departamento</a></li>
-            <li><a href="#" class="hover:text-blue-600">Departamento</a></li>
-            <li><a href="#" class="hover:text-blue-600">Departamento</a></li>
-            <li><a href="#" class="hover:text-blue-600">Departamento</a></li>
+            <!-- Links de Departamento (Navegação Principal) -->
+            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
+            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
+            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
+            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
+            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
+            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
+            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
             
-        </ul>
+        </nav>
+        
     </div>
-</nav>
+</div>
+    </header>
+    
 
     <!-- Secção Hero (Super Sale) -->
     <!-- O fundo cinza aplica-se a toda a largura, mas o conteúdo fica contido no centro -->
