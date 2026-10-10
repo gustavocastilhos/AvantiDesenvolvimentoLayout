@@ -1,145 +1,142 @@
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        avanti: {
-                            blue: '#0055ff',
-                            light: '#f4f4f4',
-                            dark: '#1a1a1a',
-                            gray: '#888888',
-                            border: '#e5e5e5'
-                        }
-                    }
-                }
-            }
-        }
+tailwind.config = {
+    theme: {
+        extend: {
+            fontFamily: {
+                sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+                avanti: {
+                    blue: '#0055ff',
+                    light: '#f4f4f4',
+                    dark: '#1a1a1a',
+                    gray: '#888888',
+                    border: '#e5e5e5',
+                },
+            },
+        },
+    },
+};
 
-// Função utilitária para inicializar a lógica do carrossel com rolagem suave
-        function initCarousel(trackId, prevBtnId, nextBtnId) {
-            const track = document.getElementById(trackId);
-            const prevBtn = document.getElementById(prevBtnId);
-            const nextBtn = document.getElementById(nextBtnId);
+const CAROUSEL_SCROLL_DISTANCE = 264;
 
-            if (!track || !prevBtn || !nextBtn) return;
+function initCarousel(trackId, previousButtonId, nextButtonId) {
+    const track = document.getElementById(trackId);
+    const previousButton = document.getElementById(previousButtonId);
+    const nextButton = document.getElementById(nextButtonId);
 
-            // Largura de um card + gap (aproximadamente 240px + 24px)
-            const scrollAmount = 264; 
+    if (!track || !previousButton || !nextButton) return;
 
-            nextBtn.addEventListener('click', () => {
-                track.scrollBy({
-                    left: scrollAmount,
-                    behavior: 'smooth'
-                });
-            });
-
-            prevBtn.addEventListener('click', () => {
-                track.scrollBy({
-                    left: -scrollAmount,
-                    behavior: 'smooth'
-                });
-            });
-
-            // Lógica opcional para esconder/mostrar setas baseada no scroll (simples)
-            track.addEventListener('scroll', () => {
-                if (track.scrollLeft <= 0) {
-                    prevBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                } else {
-                    prevBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                }
-
-                if (track.scrollLeft + track.clientWidth >= track.scrollWidth - 1) {
-                    nextBtn.classList.add('opacity-50', 'cursor-not-allowed');
-                } else {
-                    nextBtn.classList.remove('opacity-50', 'cursor-not-allowed');
-                }
-            });
-
-            // Disparo inicial para checar o estado
-            track.dispatchEvent(new Event('scroll'));
-        }
-
-        function initSearch() {
-            const searchInput = document.getElementById('searchInput');
-            const searchBtn = document.getElementById('searchBtn');
-            const searchResult = document.getElementById('searchResult');
-
-            if (searchInput && searchBtn && searchResult) {
-                searchBtn.addEventListener('click', () => {
-                    const searchTerm = searchInput.value.trim();
-                    if (searchTerm) {
-                        searchResult.innerHTML = `Você buscou por: <strong>'${searchTerm}'</strong>`;
-                        searchResult.classList.remove('hidden');
-                    } else {
-                        searchResult.classList.add('hidden');
-                    }
-                });
-
-                // Permite buscar também pressionando a tecla 'Enter'
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') {
-                        searchBtn.click();
-                    }
-                });
-            }
-        }
-
-        function initNavigationMenus() {
-            const categoriesToggle = document.getElementById('categoriesMenuToggle');
-            const categoriesMenu = document.getElementById('categoriesMenu');
-            const departmentMenu = document.getElementById('departmentMenu');
-            const departmentToggles = Array.from(document.querySelectorAll('.department-menu-toggle'));
-
-            if (!categoriesToggle || !categoriesMenu || !departmentMenu || departmentToggles.length === 0) return;
-
-            function closeMenus() {
-                categoriesMenu.classList.add('hidden');
-                departmentMenu.classList.add('hidden');
-                categoriesToggle.setAttribute('aria-expanded', 'false');
-                departmentToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
-            }
-
-            categoriesToggle.addEventListener('click', event => {
-                event.preventDefault();
-                const shouldOpen = categoriesMenu.classList.contains('hidden');
-                closeMenus();
-                if (shouldOpen) {
-                    categoriesMenu.classList.remove('hidden');
-                    categoriesToggle.setAttribute('aria-expanded', 'true');
-                }
-            });
-
-            departmentToggles.forEach(toggle => {
-                toggle.addEventListener('click', event => {
-                    event.preventDefault();
-                    const shouldOpen = departmentMenu.classList.contains('hidden');
-                    closeMenus();
-                    if (shouldOpen) {
-                        departmentMenu.classList.remove('hidden');
-                        departmentToggles.forEach(item => item.setAttribute('aria-expanded', 'true'));
-                    }
-                });
-            });
-
-            document.addEventListener('click', event => {
-                const target = event.target;
-                const insideCategories = categoriesToggle.contains(target) || categoriesMenu.contains(target);
-                const insideDepartments = departmentMenu.contains(target) || departmentToggles.some(toggle => toggle.contains(target));
-
-                if (!insideCategories && !insideDepartments) closeMenus();
-            });
-
-            document.addEventListener('keydown', event => {
-                if (event.key === 'Escape') closeMenus();
-            });
-        }
-
-        // Inicializa carrosséis e busca quando a página carregar
-        document.addEventListener('DOMContentLoaded', () => {
-            initCarousel('carouselTrack1', 'prevBtn1', 'nextBtn1');
-            initCarousel('carouselTrack2', 'prevBtn2', 'nextBtn2');
-            initSearch();
-            initNavigationMenus();
+    nextButton.addEventListener('click', () => {
+        track.scrollBy({
+            left: CAROUSEL_SCROLL_DISTANCE,
+            behavior: 'smooth',
         });
+    });
+
+    previousButton.addEventListener('click', () => {
+        track.scrollBy({
+            left: -CAROUSEL_SCROLL_DISTANCE,
+            behavior: 'smooth',
+        });
+    });
+
+    track.addEventListener('scroll', () => {
+        previousButton.classList.toggle('opacity-50', track.scrollLeft <= 0);
+        previousButton.classList.toggle('cursor-not-allowed', track.scrollLeft <= 0);
+
+        const isAtEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 1;
+        nextButton.classList.toggle('opacity-50', isAtEnd);
+        nextButton.classList.toggle('cursor-not-allowed', isAtEnd);
+    });
+
+    track.dispatchEvent(new Event('scroll'));
+}
+
+function initSearch() {
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchBtn');
+    const searchResult = document.getElementById('searchResult');
+
+    if (!searchInput || !searchButton || !searchResult) return;
+
+    searchButton.addEventListener('click', () => {
+        const searchTerm = searchInput.value.trim();
+
+        if (!searchTerm) {
+            searchResult.classList.add('hidden');
+            return;
+        }
+
+        const highlightedTerm = document.createElement('strong');
+        highlightedTerm.textContent = `'${searchTerm}'`;
+        searchResult.replaceChildren(
+            document.createTextNode('Você buscou por: '),
+            highlightedTerm,
+        );
+        searchResult.classList.remove('hidden');
+    });
+
+    searchInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') searchButton.click();
+    });
+}
+
+function initNavigationMenus() {
+    const categoriesToggle = document.getElementById('categoriesMenuToggle');
+    const categoriesMenu = document.getElementById('categoriesMenu');
+    const departmentMenu = document.getElementById('departmentMenu');
+    const departmentToggles = [...document.querySelectorAll('.department-menu-toggle')];
+
+    if (!categoriesToggle || !categoriesMenu || !departmentMenu || departmentToggles.length === 0) return;
+
+    function closeMenus() {
+        categoriesMenu.classList.add('hidden');
+        departmentMenu.classList.add('hidden');
+        categoriesToggle.setAttribute('aria-expanded', 'false');
+        departmentToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
+    }
+
+    categoriesToggle.addEventListener('click', event => {
+        event.preventDefault();
+        const shouldOpen = categoriesMenu.classList.contains('hidden');
+
+        closeMenus();
+        if (!shouldOpen) return;
+
+        categoriesMenu.classList.remove('hidden');
+        categoriesToggle.setAttribute('aria-expanded', 'true');
+    });
+
+    departmentToggles.forEach(toggle => {
+        toggle.addEventListener('click', event => {
+            event.preventDefault();
+            const shouldOpen = departmentMenu.classList.contains('hidden');
+
+            closeMenus();
+            if (!shouldOpen) return;
+
+            departmentMenu.classList.remove('hidden');
+            toggle.setAttribute('aria-expanded', 'true');
+        });
+    });
+
+    document.addEventListener('click', event => {
+        const target = event.target;
+        const clickedCategoriesMenu = categoriesToggle.contains(target) || categoriesMenu.contains(target);
+        const clickedDepartmentMenu = departmentMenu.contains(target)
+            || departmentToggles.some(toggle => toggle.contains(target));
+
+        if (!clickedCategoriesMenu && !clickedDepartmentMenu) closeMenus();
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') closeMenus();
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initCarousel('carouselTrack1', 'prevBtn1', 'nextBtn1');
+    initCarousel('carouselTrack2', 'prevBtn2', 'nextBtn2');
+    initSearch();
+    initNavigationMenus();
+});
