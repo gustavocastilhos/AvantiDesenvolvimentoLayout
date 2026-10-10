@@ -68,14 +68,13 @@
         <nav class="flex items-center justify-center space-x-6 md:space-x-8 py-3 text-sm font-medium text-gray-600">
             
             <!-- Todas as Categorias (Com Mega Menu) -->
-            <!-- A classe 'group' aqui é o gatilho. Quando o rato passar por esta div, o menu dentro dela aparece -->
-            <div class="group py-2">
-                <a href="#" class="flex items-center text-black font-bold hover:text-blue-600 transition-colors">
+            <div class="py-2">
+                <a href="#" id="categoriesMenuToggle" aria-expanded="false" aria-controls="categoriesMenu" class="flex items-center text-black font-bold hover:text-blue-600 transition-colors">
                     <i class="fas fa-bars mr-2"></i> Todas as Categorias
                 </a>
                 
-                <!-- Corpo do Mega Menu (Escondido por padrão, visível no hover da class 'group') -->
-                <div class="absolute left-0 top-full w-full bg-white shadow-2xl border-t border-gray-100 hidden group-hover:block">
+                <!-- Corpo do Mega Menu -->
+                <div id="categoriesMenu" class="absolute left-0 top-full w-full bg-white shadow-2xl border-t border-gray-100 hidden">
                     <div class="max-w-[1370px] mx-auto flex p-6">
                         
                         <!-- Coluna 1: Lista de Departamentos (Fundo Cinza Claro) -->
@@ -166,7 +165,7 @@
                         <div class="w-72 flex-shrink-0">
                             <!-- Lembre-se de ajustar o 'src' para o caminho da sua imagem da caneca -->
                             <div class="relative w-full h-full min-h-[350px] rounded-lg overflow-hidden group/banner cursor-pointer">
-                                <img src="assets\canecaReta.png" alt="Produtos que acabaram de chegar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/banner:scale-105">
+                                <img src="assets/canecaReta.png" alt="Produtos que acabaram de chegar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/banner:scale-105">
                                 
                                 <!-- Overlay Escuro e Texto -->
                                 <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center p-6">
@@ -185,15 +184,66 @@
             </div>
 
             <!-- Links de Departamento (Navegação Principal) -->
-            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
-            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
-            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
-            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
-            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
-            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
-            <a href="#" class="hover:text-blue-600 transition-colors py-2">Departamento</a>
+            <a href="#" class="department-menu-toggle hover:text-blue-600 transition-colors py-2" aria-expanded="false" aria-controls="departmentMenu">Departamento</a>
+            <a href="#" class="department-menu-toggle hover:text-blue-600 transition-colors py-2" aria-expanded="false" aria-controls="departmentMenu">Departamento</a>
+            <a href="#" class="department-menu-toggle hover:text-blue-600 transition-colors py-2" aria-expanded="false" aria-controls="departmentMenu">Departamento</a>
+            <a href="#" class="department-menu-toggle hover:text-blue-600 transition-colors py-2" aria-expanded="false" aria-controls="departmentMenu">Departamento</a>
+            <a href="#" class="department-menu-toggle hover:text-blue-600 transition-colors py-2" aria-expanded="false" aria-controls="departmentMenu">Departamento</a>
+            <a href="#" class="department-menu-toggle hover:text-blue-600 transition-colors py-2" aria-expanded="false" aria-controls="departmentMenu">Departamento</a>
+            <a href="#" class="department-menu-toggle hover:text-blue-600 transition-colors py-2" aria-expanded="false" aria-controls="departmentMenu">Departamento</a>
             
         </nav>
+
+        <div id="departmentMenu" class="absolute left-0 top-full w-full bg-white shadow-2xl border-t border-gray-100 hidden z-50">
+            <div class="max-w-[1370px] mx-auto flex gap-8 p-6">
+                <div class="flex-1 min-w-0">
+                    <div class="flex items-center justify-between border-b border-gray-200 pb-4 mb-6">
+                        <h2 class="text-lg font-bold text-black">Categorias</h2>
+                        <a href="#" class="text-sm font-semibold text-blue-600 hover:text-blue-800">Ver tudo</a>
+                    </div>
+                    <div class="grid grid-cols-3 gap-8">
+                        <div>
+                            <h3 class="text-sm font-bold text-blue-600 mb-4">Categorias</h3>
+                            <ul class="space-y-3 text-sm text-gray-500">
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-blue-600 mb-4">Categorias</h3>
+                            <ul class="space-y-3 text-sm text-gray-500">
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-sm font-bold text-blue-600 mb-4">Categorias</h3>
+                            <ul class="space-y-3 text-sm text-gray-500">
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                                <li><a href="#" class="hover:text-blue-600">Categorias</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-72 flex-shrink-0">
+                    <div class="relative w-full h-full min-h-[350px] rounded-lg overflow-hidden group/banner cursor-pointer">
+                        <img src="assets/canecaReta.png" alt="Produtos que acabaram de chegar" class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover/banner:scale-105">
+                        <div class="absolute inset-0 bg-black/40 flex flex-col justify-center items-center text-center p-6">
+                            <h3 class="text-white text-2xl font-bold mb-6 leading-tight drop-shadow-md">Confira os<br>Produtos<br>Que acabaram<br>De chegar</h3>
+                            <span class="px-6 py-2 border border-white text-white text-xs font-bold rounded hover:bg-white hover:text-black transition-colors">
+                                VER TODOS
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         
     </div>
 </div>

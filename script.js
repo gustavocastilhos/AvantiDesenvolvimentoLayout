@@ -86,9 +86,60 @@
             }
         }
 
+        function initNavigationMenus() {
+            const categoriesToggle = document.getElementById('categoriesMenuToggle');
+            const categoriesMenu = document.getElementById('categoriesMenu');
+            const departmentMenu = document.getElementById('departmentMenu');
+            const departmentToggles = Array.from(document.querySelectorAll('.department-menu-toggle'));
+
+            if (!categoriesToggle || !categoriesMenu || !departmentMenu || departmentToggles.length === 0) return;
+
+            function closeMenus() {
+                categoriesMenu.classList.add('hidden');
+                departmentMenu.classList.add('hidden');
+                categoriesToggle.setAttribute('aria-expanded', 'false');
+                departmentToggles.forEach(toggle => toggle.setAttribute('aria-expanded', 'false'));
+            }
+
+            categoriesToggle.addEventListener('click', event => {
+                event.preventDefault();
+                const shouldOpen = categoriesMenu.classList.contains('hidden');
+                closeMenus();
+                if (shouldOpen) {
+                    categoriesMenu.classList.remove('hidden');
+                    categoriesToggle.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            departmentToggles.forEach(toggle => {
+                toggle.addEventListener('click', event => {
+                    event.preventDefault();
+                    const shouldOpen = departmentMenu.classList.contains('hidden');
+                    closeMenus();
+                    if (shouldOpen) {
+                        departmentMenu.classList.remove('hidden');
+                        departmentToggles.forEach(item => item.setAttribute('aria-expanded', 'true'));
+                    }
+                });
+            });
+
+            document.addEventListener('click', event => {
+                const target = event.target;
+                const insideCategories = categoriesToggle.contains(target) || categoriesMenu.contains(target);
+                const insideDepartments = departmentMenu.contains(target) || departmentToggles.some(toggle => toggle.contains(target));
+
+                if (!insideCategories && !insideDepartments) closeMenus();
+            });
+
+            document.addEventListener('keydown', event => {
+                if (event.key === 'Escape') closeMenus();
+            });
+        }
+
         // Inicializa carrosséis e busca quando a página carregar
         document.addEventListener('DOMContentLoaded', () => {
             initCarousel('carouselTrack1', 'prevBtn1', 'nextBtn1');
             initCarousel('carouselTrack2', 'prevBtn2', 'nextBtn2');
             initSearch();
+            initNavigationMenus();
         });
